@@ -1,0 +1,42 @@
+name: html-scrabble
+base: core18
+adopt-info: html-scrabble
+summary: Online multiplayer Scrabble with HTML/JavaScript UI
+description: |
+  Features:
+    * Two to four players
+    * Czech, English, Estonian, French, German, Hungarian and Dutch letter sets
+    * Written in JavaScript, runs in browser
+    * Scalable user interface
+    * Desktop notification support
+    * Moderate sound effects
+    * Tile placement by clicking, drag&drop or keyboard entry
+    * Chat
+    * Standard Scrabble rules including "Challenge" with simple penalty
+    * No dictionary enforced
+    * Player online status display
+    * Participation in multiple games from one browser possible
+    * Uses node.js on the server
+    * No database required, no deployment complexities
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict
+
+parts:
+  html-scrabble:
+    plugin: nodejs
+    source: https://github.com/hanshuebner/html-scrabble
+    source-type: git
+    override-build: |
+      snapcraftctl build
+      snapcraftctl set-version "$(git describe --tags | sed 's/html-scrabble-//')"
+
+  wrapper:
+    plugin: dump
+    source: wrapper
+
+apps:
+  html-scrabble:
+    command: wrapper.sh
+    plugs:
+      - network-bind
