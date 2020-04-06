@@ -38,5 +38,6 @@ parts:
 apps:
   html-scrabble:
     command: wrapper.sh
+    daemon: simple
     plugs:
       - network-bind

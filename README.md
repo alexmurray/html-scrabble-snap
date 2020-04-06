@@ -34,9 +34,11 @@ snapcraft
 # install the snap (--dangerous signals this is not signed and hence not trusted)
 sudo snap install ./html-scrabble*.snap --dangerous
 
-# run it to generate default config
-html-scrabble
+# start it to generate default config
+sudo snap start html-scrabble
 
-# config lives in ~/snap/html-snap/current/config.json - edit as required
+# config lives in /var/snap/html-snap/current/config.json - edit as required
 and restart...
+
+sudo snap restart html-scrabble
 ```
